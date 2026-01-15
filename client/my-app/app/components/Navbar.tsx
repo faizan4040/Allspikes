@@ -8,6 +8,7 @@ import {
   Heart,
   ShoppingBag,
   ChevronDown,
+  Globe,
 } from "lucide-react"
 
 const ads = [
@@ -121,7 +122,7 @@ const Navbar = () => {
            <a href="/"><span className="font-bold tracking-wide">BRANDLOGO.COM</span></a> 
           </div>
 
-          <div className="flex items-center gap-4 relative">
+          <div className="flex items-center gap-8 relative">
             {/* SEARCH */}
             <div className="relative hidden sm:block w-64 md:w-80 lg:w-105">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -138,30 +139,97 @@ const Navbar = () => {
                 setLangOpen(!langOpen)
                 setProfileOpen(false)
               }}
-              className="hidden sm:block text-sm hover:underline cursor-pointer"
+              className="
+                hidden sm:flex items-center gap-1.5
+                text-sm cursor-pointer
+                hover:underline
+              "
             >
-              EN £
+              <Globe size={16} />
+              <span>EN £</span>
             </button>
 
+
             {langOpen && (
-              <div
-                ref={langRef}
-                className="absolute right-0 top-12 z-50 w-80 bg-white text-black rounded-xl shadow-2xl p-5"
-              >
-                <h4 className="font-semibold mb-4">
-                  Please choose your language or currency
-                </h4>
-                <select className="w-full border p-2 mb-3">
-                  <option>English</option>
-                </select>
-                <select className="w-full border p-2 mb-4">
-                  <option>£ GBP</option>
-                </select>
-                <button className="w-full bg-black text-white py-2 rounded-md">
-                  Update
-                </button>
-              </div>
-            )}
+                <div
+                  ref={langRef}
+                  className="
+                    absolute right-0 top-14 z-50 w-85
+                    bg-white text-black
+                    rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.15)]
+                    border border-gray-100
+                    p-6
+                    animate-[fadeIn_.2s_ease-out]
+                  "
+                >
+                  {/* Header */}
+                  <h4 className="text-xs font-semibold mb-4">
+                    Please choose your language or currency
+                  </h4>
+
+                  {/* Language */}
+                  <div className="mb-4">
+                    <label className="block text-xs font-medium text-gray-500 mb-1">
+                      Language
+                    </label>
+                    <select
+                      className="
+                        w-full appearance-none
+                        border border-gray-300
+                        rounded-lg px-3 py-2
+                        text-sm
+                        focus:outline-none focus:ring-2 focus:ring-black
+                      "
+                    >
+                      <option>English</option>
+                      <option>French</option>
+                      <option>German</option>
+                    </select>
+                  </div>
+
+                  {/* Currency */}
+                  <div className="mb-5">
+                    <label className="block text-xs font-medium text-gray-500 mb-1">
+                      Currency
+                    </label>
+                    <select
+                      className="
+                        w-full appearance-none
+                        border border-gray-300
+                        rounded-lg px-3 py-2
+                        text-sm
+                        focus:outline-none focus:ring-2 focus:ring-black
+                      "
+                    >
+                      <option>£ GBP</option>
+                      <option>$ USD</option>
+                      <option>€ EUR</option>
+                    </select>
+                  </div>
+
+                  {/* Info Box */}
+                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 mb-5">
+                    <p className="text-sm text-gray-700">
+                      Don’t miss out on your{" "}
+                      <span className="font-semibold">Ultra</span> member benefits
+                    </p>
+                  </div>
+
+                  {/* Button */}
+                  <button
+                    className="
+                      w-full bg-black text-white
+                      py-2.5 rounded-xl
+                      text-sm font-medium
+                      hover:bg-gray-900
+                      transition
+                    "
+                  >
+                    Update
+                  </button>
+                </div>
+              )}
+
 
             {/* PROFILE */}
             <User
@@ -172,24 +240,63 @@ const Navbar = () => {
               }}
             />
 
-            {profileOpen && (
-              <div
-                ref={profileRef}
-                className="absolute right-0 top-12 z-50 w-72 bg-white text-black rounded-xl shadow-2xl p-5 cursor-pointer"
-              >
-                <p className="text-sm mb-4">
-                  Don’t miss out on your <strong>Ultra</strong> member benefits
-                </p>
-                <div className="flex gap-2">
-                  <button className="flex-1 border py-2 rounded-md">
-                    Sign In
-                  </button>
-                  <button className="flex-1 bg-black text-white py-2 rounded-md">
-                    Create Account
-                  </button>
-                </div>
+           {profileOpen && (
+            <div
+              ref={profileRef}
+              className="
+                absolute right-0 top-14 z-50 w-75
+                bg-white text-black
+                rounded-2xl
+                shadow-[0_20px_40px_rgba(0,0,0,0.18)]
+                border border-gray-100
+                p-6
+                animate-[fadeIn_.2s_ease-out]
+              "
+            >
+              {/* Arrow */}
+              <div className="absolute -top-2 right-6 w-4 h-4 bg-white rotate-45 border-l border-t border-gray-200" />
+
+              {/* Title */}
+              <h4 className="text-base font-semibold mb-1">
+                Join Ultra
+              </h4>
+
+              {/* Description */}
+              <p className="text-sm text-gray-600 mb-5 leading-relaxed">
+                Don’t miss out on your{" "}
+                <span className="font-semibold text-black">Ultra</span> member benefits —
+                exclusive offers, faster checkout & early access.
+              </p>
+
+              {/* Buttons */}
+              <div className="flex flex-col gap-3">
+                <button
+                  className="
+                    w-full border border-gray-300
+                    py-2.5 rounded-xl
+                    text-sm font-medium
+                    hover:bg-gray-100
+                    transition
+                  "
+                >
+                  Sign In
+                </button>
+
+                <button
+                  className="
+                    w-full bg-black text-white
+                    py-2.5 rounded-xl
+                    text-sm font-medium
+                    hover:bg-gray-900
+                    transition
+                  "
+                >
+                  Create Free Account
+                </button>
               </div>
-            )}
+            </div>
+          )}
+
 
             <Heart className="hidden sm:block cursor-pointer" />
             <ShoppingBag className="cursor-pointer"/>
@@ -219,5 +326,3 @@ export default Navbar
 
 
 
-
-// asdasdasdasdasdasdasdasd
