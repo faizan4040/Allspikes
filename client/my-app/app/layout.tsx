@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar"
+import Navbar from "./appcomponents/Navbar"
 import "./globals.css"
 import type { ReactNode } from "react"
 import type { Metadata } from "next"

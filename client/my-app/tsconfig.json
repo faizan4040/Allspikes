@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "application/ButtonLoading.jsx", "app/(root)/auth/login/page.jsx", "app/appcomponents/ButtonLoading.jsx"  ],
   "exclude": ["node_modules"]
 }

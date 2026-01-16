@@ -3,6 +3,7 @@ import Link from "next/link"
 import { IMAGES } from "@/app/lib/images"
 import { Button } from "@/components/ui/button"
 
+
 export default function Home() {
   return (
     <main className="px-4 md:px-8 py-3">
@@ -51,7 +52,8 @@ export default function Home() {
         </section>
       </Link>
 
-      <Button>Button</Button>
+
+      <Button>Click</Button>
     </main>
   )
 }
