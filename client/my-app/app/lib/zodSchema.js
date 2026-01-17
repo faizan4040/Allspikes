@@ -1,11 +1,9 @@
 import {z} from "zod";
 
-export const zodSchema = z.object({
+export const zSchema = z.object({
  email: z
     .string()
-    .trim()
-    .toLowerCase()
-    .email("Invalid email address"),
+    .email({message: "Invalid email address"}),
 
   password: z
     .string()

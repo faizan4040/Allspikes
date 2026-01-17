@@ -1,6 +1,6 @@
 import connectDB from "../../../lib/databaseConnection";
-import { SignJWT } from "jose";
-import { zodSchema } from "../../../lib/zodSchema";
+import { SignJWT, jwtVerify } from "jose";
+import { zSchema } from "../../../lib/zodSchema";
 import { catchError, response } from "../../../lib/helperFunction";
 import  UserModel  from "../../../../models/User.model";
 import { sendMail } from "../../../lib/sendMail";
@@ -11,7 +11,7 @@ export async function POST(request) {
     try {
         await connectDB();
         // validation schema
-        const validationSchema = zodSchema.pick({
+        const validationSchema = zSchema.pick({
             name: true,
             email: true,
             password: true,
@@ -28,14 +28,13 @@ export async function POST(request) {
 
           const {name, email, password} = validatedData.data;
 
-        //   check already registered user
+        // check already registered user
           const checkUser = await UserModel.exists({email})
           if(checkUser){
-            return response(false, 409, 'User already registered with this email.');
+            return response(true, 409, 'User already registered with this email.');
           }
 
           // new user creation
-
           const NewRegistration = new UserModel({
             name,
             email,
@@ -56,7 +55,7 @@ export async function POST(request) {
             email, emailVerificationLink(`${process.env.SPORT_SHOES_WEBSITE_URL}/auth/verify-email/${token}`));
 
 
-         return response(true, 200, 'Registration success, please verify your email address.', { token });
+         return response(false, 200, 'Registration success, please verify your email address.');
 
         } catch (error){
            catchError(error)

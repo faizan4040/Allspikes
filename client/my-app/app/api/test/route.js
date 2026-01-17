@@ -1,12 +1,22 @@
-import connectDB from "../../../../lib/databaseConnection";
-
 import { NextResponse } from "next/server";
+import connectDB from "@/app/lib/databaseConnection";
 
 export async function GET() {
-  await connectDB();
+  try {
+    await connectDB();
 
-  return NextResponse.json({
-    success: true,
-    message: "Database connected successfully",
-  });
+    return NextResponse.json({
+      success: true,
+      message: "Database connected successfully",
+    });
+  } catch (error) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Database connection failed",
+        error: error.message,
+      },
+      { status: 500 }
+    );
+  }
 }

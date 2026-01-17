@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
     unique: true,
     select: false,
   },
-
+  
   avtar: {
     url: {
         type: String,

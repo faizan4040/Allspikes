@@ -12,8 +12,8 @@ export const response = (success, statusCode, message, data = {}) => {
 export const catchError = (error, customMessage ) => {
   // handleing duplicate key error
   if(error.code == 11000){
-    const key = Object.keys(error.keyValue).join(',');
-    error.message = `Duplicate field: ${key}. These field value must be unique.`;
+    const keys = Object.keys(error.keyValue).join(',');
+    error.message = `Duplicate field: ${keys}. These field value must be unique.`;
   }
   
   let errorObj = {}
@@ -24,10 +24,17 @@ export const catchError = (error, customMessage ) => {
       error
     }
   } else {
-    errorObj = {
+      errorObj = {
       message: customMessage || 'Internal server error.',
     }
   }
-  return response(false, error.code, ...errorObj);
+
+return response(
+  false,
+  error.code || 500,
+  errorObj.message,
+  errorObj
+);
+
   
 }
